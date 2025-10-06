@@ -32,8 +32,9 @@ export class AppComponent implements OnInit, OnDestroy {
     if (event.data?.type === 'GREETING_FROM_APP1') {
         this.message.set(event.data);
         console.log('Message received in App2:', event.data);
+        localStorage.setItem('isRootAppOpen', event.data.process.isRootAppOpen);
         this.conterHandler(event.data.process)
-        this.openForms(event.data.process)
+        this.openForms(event.data.process.formName);
 
     }
   };
