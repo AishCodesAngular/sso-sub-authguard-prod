@@ -28,7 +28,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   handleMessage = (event: MessageEvent) => {
-    if (event.origin !== 'http://localhost:4200') return; // ✅ security check
+     const expectedPath = '/sso-main-authguard-prod/';
+    if (event.origin + expectedPath !== 'https://aishcodesangular.github.io/sso-main-authguard-prod/') return; // ✅ security check
     if (event.data?.type === 'GREETING_FROM_APP1') {
         this.message.set(event.data);
         console.log('Message received in App2:', event.data);
