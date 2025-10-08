@@ -1,12 +1,14 @@
-<h1>{{message() | json}}</h1>
+<ng-container *ngIf="sharedService?.isAppOpen == 'true'">
+  <h1>{{message() | json}}</h1>
 
-<button (click)="sharedService.sendMessageToApp1('message')">Send Message To App1</button>
-
-
-<div style="border: solid 1px #000; text-align: center; margin-top: 10px; padding: 10px; background-color: bisque;">
-  <button (click)="incrementApp1('pluse')">+</button>
-  <h1>Counter: {{counter() }}</h1>
-  <button (click)="decrementApp1('minus')">-</button>
-</div>
+  <button (click)="sharedService.sendMessageToApp1('message')">Send Message To App1</button>
+  
+  
+  <div style="border: solid 1px #000; text-align: center; margin-top: 10px; padding: 10px; background-color: bisque;">
+    <button (click)="incrementApp1('pluse')">+</button>
+    <h1>Counter: {{counter() }}</h1>
+    <button (click)="decrementApp1('minus')">-</button>
+  </div>
+</ng-container>
 
 <router-outlet></router-outlet>

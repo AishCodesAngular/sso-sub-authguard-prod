@@ -11,5 +11,6 @@ export const routes: Routes = [
   { path: 'second', component: SecondForm, canActivate: [authGuard] },      // /about
   { path: 'third', component: ThirdForm, canActivate: [authGuard] }, 
   { path: 'error', component: ErrorPage }, 
+  { path: '**', redirectTo: 'error' }
 
 ];

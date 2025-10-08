@@ -13,6 +13,7 @@ import { SharedService } from './services/shared-service';
 export class AppComponent implements OnInit, OnDestroy {
    message = signal<any>('Waiting for message... from App1');
    counter = signal<number>(0);
+    public isRootAppOpen: any;
 
   constructor(
     private router: Router,
@@ -33,7 +34,13 @@ export class AppComponent implements OnInit, OnDestroy {
     if (event.data?.type === 'GREETING_FROM_APP1') {
         this.message.set(event.data);
         console.log('Message received in App2:', event.data);
-        localStorage.setItem('isRootAppOpen', event.data.process.isRootAppOpen);
+         if(event.data.process.isRootAppOpen == 'true') {
+          localStorage.setItem('isRootAppOpen', event.data.process.isRootAppOpen);
+        } else {
+          localStorage.removeItem('isRootAppOpen');
+        }
+        this.isRootAppOpen = localStorage.getItem('isRootAppOpen');
+        this.sharedService.isAppOpen = this.isRootAppOpen;
         this.conterHandler(event.data.process)
         this.openForms(event.data.process.formName);
 

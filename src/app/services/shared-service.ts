@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SharedService {
+  public isAppOpen = localStorage.getItem('isRootAppOpen');
 
 
   sendMessageToApp1(value: any) {
